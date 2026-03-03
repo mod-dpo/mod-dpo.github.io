@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MoD-DPO: Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization">
+  <meta name="keywords" content="MoD-DPO, Omni LLM, Multimodal, Hallucination, Preference Optimization, CVPR 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoD-DPO: Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <!-- Bulma + icons -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <style>
+    .navbar-menu.navbar-menu-centered { justify-content: center; }
+    .navbar .navbar-item.authors-projects-trigger.navbar-link { background: rgba(255, 56, 96, 0.12); color: #ff3860; font-weight: 700; border-radius: 8px; }
+    .navbar .navbar-item.authors-projects-trigger.navbar-link:hover { background: rgba(255, 56, 96, 0.2); color: #cc2d4d; }
+    .publication-links { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; align-items: center; }
+    .publication-links .pub-btn { border: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; color: #fff; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; font-size: 0.95rem; }
+    .publication-links .pub-btn:hover:not(:disabled):not(.disabled) { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+    .publication-links .pub-btn .pub-icon { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .publication-links .pub-btn .pub-icon img { height: 20px; width: auto; vertical-align: middle; }
+    .publication-links .pub-btn-arxiv { background: linear-gradient(135deg, #b31b1b 0%, #8b0000 100%); }
+    .publication-links .pub-btn-pdf { background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%); }
+    .publication-links .pub-btn-code { background: linear-gradient(135deg, #111827 0%, #000000 100%); color: #ffffff; }
+    .publication-links .pub-btn-data { background: linear-gradient(135deg, #7dd87d 0%, #22c55e 100%); color: #fff; }
+    .publication-links .pub-btn-leaderboard { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+    .publication-links .pub-btn.disabled { opacity: 0.8; cursor: not-allowed; pointer-events: none; }
+    /* CVPR logo in venue: use blue fill via currentColor */
+    .publication-venue .cvpr-logo-svg { height: 1.5em; width: auto; vertical-align: middle; display: inline-block; }
+    .publication-venue .cvpr-logo-svg path,
+    .publication-venue .cvpr-logo-svg rect { fill: currentColor; }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu navbar-menu-centered">
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link authors-projects-trigger">
+        <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+        <span>Other Projects</span>
+      </a>
+      <div class="navbar-dropdown is-right">
+        <a href="https://avere-iclr.github.io/" class="navbar-item" target="_blank" rel="noopener">AVERE (ICLR 2026)</a>
+        <a href="https://face-llava.github.io/" class="navbar-item" target="_blank" rel="noopener">Face-LLaVA (WACV 2026)</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Logo -->
+<section class="section has-text-centered" style="padding-top: 1rem; padding-bottom: 0; margin-bottom: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <!-- PLACEHOLDER: Replace with MoD-DPO logo (e.g. static/images/mod_dpo_logo.png) -->
+        <img src="static/images/mod_dpo_logo_wide.png"
+             alt="MoD-DPO Logo"
+             style="max-width: 100%; height: auto;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Title + Authors + Links -->
+<section class="hero" style="padding-top: 0; margin-top: 0;">
+  <div class="hero-body" style="padding-top: 0;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization
+          </h1>
+
+          <div class="is-size-2 publication-venue" style="margin-bottom: 1rem; text-align: center; width: 100%;">
+            <a href="https://cvpr.thecvf.com/" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 800; display: inline-flex; align-items: center; gap: 0.5rem; justify-content: center; font-size: 1.15em;">
+              <img src="static/images/cvpr_logo.png" alt="CVPR 2026" class="cvpr-logo-svg" style="height: 2.0em; width: auto;">
+            </a>
+          </div>
+
+          <!-- PLACEHOLDER: Replace with author names and links -->
+          <div class="is-size-3 publication-authors">
+            <span class="author-block">
+              <a href="https://ashutoshchaubey.in/">Ashutosh Chaubey,</a>
+            </span>
+            <span class="author-block">
+              <a href="https://jiachengpang.github.io/">Jiacheng Pang,</a>
+            </span>
+            <span class="author-block">
+              <a href="https://www.ihp-lab.org/">Mohammad Soleymani</a>
+            </span>
+          </div>
+
+          <!-- PLACEHOLDER: Add institution logos if desired -->
+          <div class="has-text-centered" style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <img src="static/images/ict_logo.jpg" alt="Institute for Creative Technologies" style="max-height: 58px; height: auto; width: auto;">
+            <img src="static/images/usc_logo.png" alt="University of Southern California" style="max-height: 48px; height: auto; width: auto;">
+          </div>
+
+          <!-- PLACEHOLDER: Update hrefs when available -->
+          <div class="column has-text-centered" style="margin-top: 1rem;">
+            <div class="publication-links">
+              <a href="#" class="pub-btn pub-btn-arxiv" target="_blank" rel="noopener"><span class="pub-icon"><i class="ai ai-arxiv" style="font-size: 1.25rem;"></i></span><span>arXiv</span></a>
+              <a href="#" class="pub-btn pub-btn-pdf" target="_blank" rel="noopener"><span class="pub-icon"><i class="fas fa-file-pdf" style="font-size: 1.1rem;"></i></span><span>PDF</span></a>
+              <span class="pub-btn pub-btn-code disabled"><span class="pub-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></span><span>Code (TBD)</span></span>
+              <span class="pub-btn pub-btn-data disabled"><span class="pub-icon"><i class="fas fa-database"></i></span><span>Data (TBD)</span></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- PLACEHOLDER: Add teaser figure (e.g. method overview or main result) -->
+      <!-- <img src="static/images/teaser.png" alt="MoD-DPO Teaser" style="max-width: 100%; height: auto;"> -->
+      <p style="margin-top: 1rem;">
+        <!-- PLACEHOLDER: One-paragraph teaser. -->
+        <b>MoD-DPO</b> addresses cross-modal hallucinations in omni-modal large language models via
+        <i>Modality Decoupled Preference Optimization</i>. [Add 1–2 sentences summarizing the approach and main result.]
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">📝 Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- PLACEHOLDER: Paste abstract here. -->
+            [Abstract to be added.]
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Method / Approach -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">🔬 Method</h2>
+    <div class="content has-text-justified">
+      <!-- PLACEHOLDER: Method overview, figure, and key contributions. -->
+      <p>[Add method description and optional figure (e.g. pipeline or framework diagram).]</p>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">📊 Results</h2>
+    <div class="content has-text-justified">
+      <!-- PLACEHOLDER: Main results, tables, and figures. -->
+      <p>[Add main results, comparison tables, and/or result figures.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- Qualitative Examples (optional) -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">✨ Qualitative Examples</h2>
+    <div class="content">
+      <!-- PLACEHOLDER: Add example comparisons (e.g. baseline vs MoD-DPO). -->
+      <p>[Optional: Add qualitative examples or demos.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- Project Resources -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds has-text-centered">
+        <h2 class="title is-3">📦 Project Resources</h2>
+        <div class="content">
+          <p>[PLACEHOLDER: List planned releases, e.g. code, data, model checkpoints.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds has-text-centered">
+        <h2 class="title is-3">💬 Contact</h2>
+        <div class="content">
+          <p>For questions about MoD-DPO, please contact:</p>
+          <!-- PLACEHOLDER: Update contact name and email -->
+          <p><b>Contact Name</b> &mdash; <a href="mailto:email@example.com">email@example.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">📎 BibTeX</h2>
+    <pre><code>@inproceedings{moddpo2026,
+  title={MoD-DPO: Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization},
+  author={PLACEHOLDER_AUTHORS},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Acknowledgement -->
+<section class="section hero is-light" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">🙏 Acknowledgement</h2>
+    <p>
+      <!-- PLACEHOLDER: Add funding and acknowledgements. -->
+      [Acknowledgements to be added.]
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Website adapted from
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            and <a href="https://avere-iclr.github.io/">AVERE</a> project pages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
