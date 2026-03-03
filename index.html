@@ -40,6 +40,23 @@
     .publication-venue .cvpr-logo-svg { height: 1.5em; width: auto; vertical-align: middle; display: inline-block; }
     .publication-venue .cvpr-logo-svg path,
     .publication-venue .cvpr-logo-svg rect { fill: currentColor; }
+
+    /* Result tables */
+    .results-table { font-size: 0.88rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-radius: 8px; overflow: hidden; }
+    .results-table thead th { text-align: center !important; vertical-align: middle; background: #f0f4ff; color: #2c3e50; font-weight: 700; padding: 0.6rem 0.75rem; border-bottom: 2px solid #d0d7e3; font-size: 0.85rem; }
+    .results-table tbody td { text-align: center; vertical-align: middle; padding: 0.45rem 0.7rem; border-color: #eaeef3; }
+    .results-table tbody td:first-child { text-align: left; white-space: nowrap; }
+    .results-table tbody tr:hover { background: rgba(50, 115, 220, 0.04) !important; }
+    .results-table .model-header td { background: #f7f8fa; font-weight: 700; border-top: 2px solid #d0d7e3; padding: 0.55rem 0.75rem; font-size: 0.9rem; }
+    .results-table .model-logo { height: 20px; width: auto; vertical-align: middle; border-radius: 3px; margin-right: 0.4rem; }
+    .results-table .method-logo { height: 16px; width: auto; vertical-align: middle; border-radius: 3px; margin-right: 0.3rem; opacity: 0.85; }
+    .results-table .row-ours { background: rgba(72, 199, 142, 0.10); }
+    .results-table .row-ours-best { background: rgba(72, 199, 142, 0.20); }
+    .results-table .row-ours td, .results-table .row-ours-best td { font-weight: 700; }
+    .results-table .row-indent td:first-child { padding-left: 1.75rem; }
+    .results-table .group-header td { background: #eaecf0; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; color: #555; padding: 0.4rem 0.75rem; border-top: 2px solid #d0d7e3; }
+    .results-table thead .bench-logo { height: 18px; width: auto; vertical-align: middle; border-radius: 3px; margin-right: 0.3rem; }
+    .bench-title-logo { height: 28px; width: auto; vertical-align: middle; border-radius: 4px; margin-right: 0.4rem; }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -77,7 +94,6 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-half">
-        <!-- PLACEHOLDER: Replace with MoD-DPO logo (e.g. static/images/mod_dpo_logo.png) -->
         <img src="static/images/mod_dpo_logo_wide.png"
              alt="MoD-DPO Logo"
              style="max-width: 100%; height: auto;"
@@ -104,7 +120,6 @@
             </a>
           </div>
 
-          <!-- PLACEHOLDER: Replace with author names and links -->
           <div class="is-size-3 publication-authors">
             <span class="author-block">
               <a href="https://ashutoshchaubey.in/">Ashutosh Chaubey,</a>
@@ -117,19 +132,17 @@
             </span>
           </div>
 
-          <!-- PLACEHOLDER: Add institution logos if desired -->
           <div class="has-text-centered" style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
             <img src="static/images/ict_logo.jpg" alt="Institute for Creative Technologies" style="max-height: 58px; height: auto; width: auto;">
             <img src="static/images/usc_logo.png" alt="University of Southern California" style="max-height: 48px; height: auto; width: auto;">
           </div>
 
-          <!-- PLACEHOLDER: Update hrefs when available -->
           <div class="column has-text-centered" style="margin-top: 1rem;">
             <div class="publication-links">
-              <a href="#" class="pub-btn pub-btn-arxiv" target="_blank" rel="noopener"><span class="pub-icon"><i class="ai ai-arxiv" style="font-size: 1.25rem;"></i></span><span>arXiv</span></a>
-              <a href="#" class="pub-btn pub-btn-pdf" target="_blank" rel="noopener"><span class="pub-icon"><i class="fas fa-file-pdf" style="font-size: 1.1rem;"></i></span><span>PDF</span></a>
-              <span class="pub-btn pub-btn-code disabled"><span class="pub-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></span><span>Code (TBD)</span></span>
-              <span class="pub-btn pub-btn-data disabled"><span class="pub-icon"><i class="fas fa-database"></i></span><span>Data (TBD)</span></span>
+              <!-- <a href="#" class="pub-btn pub-btn-arxiv" target="_blank" rel="noopener"><span class="pub-icon"><i class="ai ai-arxiv" style="font-size: 1.25rem;"></i></span><span>arXiv</span></a>
+              <a href="#" class="pub-btn pub-btn-pdf" target="_blank" rel="noopener"><span class="pub-icon"><i class="fas fa-file-pdf" style="font-size: 1.1rem;"></i></span><span>PDF</span></a> -->
+              <!-- <span class="pub-btn pub-btn-code disabled"><span class="pub-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></span><span>Code (TBD)</span></span>
+              <span class="pub-btn pub-btn-data disabled"><span class="pub-icon"><i class="fas fa-database"></i></span><span>Data (TBD)</span></span> -->
             </div>
           </div>
 
@@ -143,12 +156,13 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- PLACEHOLDER: Add teaser figure (e.g. method overview or main result) -->
-      <!-- <img src="static/images/teaser.png" alt="MoD-DPO Teaser" style="max-width: 100%; height: auto;"> -->
-      <p style="margin-top: 1rem;">
-        <!-- PLACEHOLDER: One-paragraph teaser. -->
+      <p style="margin-top: 1rem; font-size: 1.15rem;">
         <b>MoD-DPO</b> addresses cross-modal hallucinations in omni-modal large language models via
-        <i>Modality Decoupled Preference Optimization</i>. [Add 1–2 sentences summarizing the approach and main result.]
+        <i>Modality Decoupled Preference Optimization</i>. By enforcing invariance to irrelevant modality
+        corruptions and sensitivity to relevant modality perturbations, combined with a language-prior
+        debiasing penalty, MoD-DPO consistently improves perception accuracy and hallucination resistance
+        across challenging audiovisual benchmarks&mdash;outperforming prior preference optimization methods
+        under similar training budgets.
       </p>
     </div>
   </div>
@@ -162,22 +176,23 @@
         <h2 class="title is-3">📝 Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            <!-- PLACEHOLDER: Paste abstract here. -->
-            [Abstract to be added.]
+            Omni-modal large language models (omni LLMs) have recently achieved strong performance across
+            audiovisual understanding tasks, yet they remain highly susceptible to cross-modal hallucinations
+            arising from spurious correlations and dominant language priors. In this work, we propose
+            <b>Modality-Decoupled Direct Preference Optimization (MoD-DPO)</b>, a simple and effective
+            framework for improving modality grounding in omni LLMs. MoD-DPO introduces modality-aware
+            regularization terms that explicitly enforce <i>invariance</i> to corruptions in irrelevant modalities
+            and <i>sensitivity</i> to perturbations in relevant modalities, thereby reducing unintended cross-modal
+            interactions. To further mitigate over-reliance on textual priors, we incorporate a
+            <b>language-prior debiasing penalty</b> that discourages hallucination-prone text-only responses.
+            Extensive experiments across multiple audiovisual hallucination benchmarks demonstrate that MoD-DPO
+            consistently improves perception accuracy and hallucination resistance, outperforming previous
+            preference optimization baselines under similar training budgets. Our findings underscore the
+            importance of modality-faithful alignment and demonstrate a scalable path toward more reliable and
+            resilient multimodal foundation models.
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Method / Approach -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">🔬 Method</h2>
-    <div class="content has-text-justified">
-      <!-- PLACEHOLDER: Method overview, figure, and key contributions. -->
-      <p>[Add method description and optional figure (e.g. pipeline or framework diagram).]</p>
     </div>
   </div>
 </section>
@@ -187,33 +202,123 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">📊 Results</h2>
     <div class="content has-text-justified">
-      <!-- PLACEHOLDER: Main results, tables, and figures. -->
-      <p>[Add main results, comparison tables, and/or result figures.]</p>
-    </div>
-  </div>
-</section>
 
-<!-- Qualitative Examples (optional) -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">✨ Qualitative Examples</h2>
-    <div class="content">
-      <!-- PLACEHOLDER: Add example comparisons (e.g. baseline vs MoD-DPO). -->
-      <p>[Optional: Add qualitative examples or demos.]</p>
-    </div>
-  </div>
-</section>
+      <h4 class="title is-5">Cross-Modal Hallucination Benchmarks</h4>
+      <p>
+        MoD-DPO and MoD-DPO++ are evaluated on <b>AVHBench</b> and the <b>Curse of Multi-Modalities (CMM)</b> benchmark
+        using two reference models: Qwen 2.5 Omni (7B) and MiniCPM-O 2.6 (8B).
+      </p>
 
-<!-- Project Resources -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-two-thirds has-text-centered">
-        <h2 class="title is-3">📦 Project Resources</h2>
-        <div class="content">
-          <p>[PLACEHOLDER: List planned releases, e.g. code, data, model checkpoints.]</p>
-        </div>
+      <h5 class="title is-6"><img src="static/images/model_logos/avhbench_logo.png" alt="" class="bench-title-logo">AVHBench Results (Accuracy / F1)</h5>
+      <div class="table-container">
+        <table class="table is-bordered is-hoverable is-fullwidth results-table">
+          <thead>
+            <tr>
+              <th rowspan="2" style="min-width:160px;">Method</th>
+              <th colspan="2">Audio-driven Video Halluc.</th>
+              <th colspan="2">Video-driven Audio Halluc.</th>
+              <th colspan="2">AV Matching</th>
+            </tr>
+            <tr>
+              <th>Acc.</th><th>F1</th>
+              <th>Acc.</th><th>F1</th>
+              <th>Acc.</th><th>F1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="7">Other Omni LLMs</td></tr>
+            <tr><td><img src="static/images/model_logos/video_llama_2_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2406.07476" target="_blank">VideoLLaMA 2</a></td><td>79.23</td><td>79.16</td><td>75.07</td><td>73.71</td><td>52.93</td><td>23.93</td></tr>
+            <tr><td><img src="static/images/model_logos/vita_15_logo.jpg" alt="" class="method-logo"><a href="https://arxiv.org/abs/2501.01957" target="_blank">VITA-1.5</a></td><td>67.17</td><td>65.36</td><td>54.01</td><td>52.78</td><td>46.85</td><td>38.78</td></tr>
+            <tr><td><img src="static/images/model_logos/omnivinci_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2510.15870" target="_blank">OmniVinci</a></td><td>61.36</td><td>61.16</td><td>58.56</td><td>46.88</td><td>54.32</td><td>34.14</td></tr>
+            <tr><td><img src="static/images/model_logos/qwen_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.17765" target="_blank">Qwen 3 Omni</a></td><td>83.54</td><td>83.47</td><td>76.46</td><td>72.00</td><td>58.52</td><td>32.02</td></tr>
+            <tr class="model-header"><td colspan="7"><img src="static/images/model_logos/qwen_logo.png" alt="Qwen" class="model-logo"><a href="https://arxiv.org/abs/2503.20215" target="_blank">Qwen 2.5 Omni</a></td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/qwen_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2503.20215" target="_blank">Qwen 2.5 Omni</a></td><td>84.15</td><td>83.51</td><td>77.38</td><td>73.39</td><td>54.69</td><td>17.85</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/dpo_logo.avif" alt="" class="method-logo"><a href="https://arxiv.org/abs/2305.18290" target="_blank">+ DPO</a></td><td>84.39</td><td>83.42</td><td>79.68</td><td>77.28</td><td>59.32</td><td>32.94</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/omni_dpo_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.00723" target="_blank">+ OmniDPO</a></td><td>85.34</td><td>84.23</td><td>80.77</td><td>80.39</td><td>61.50</td><td>38.52</td></tr>
+            <tr class="row-indent row-ours"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO</td><td>87.66</td><td>87.61</td><td>82.48</td><td>80.98</td><td>69.07</td><td>58.53</td></tr>
+            <tr class="row-indent row-ours-best"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO++</td><td>88.19</td><td>88.15</td><td>83.40</td><td>82.10</td><td>69.68</td><td>59.71</td></tr>
+            <tr class="model-header"><td colspan="7"><img src="static/images/model_logos/minicpm_logo.png" alt="MiniCPM" class="model-logo"><a href="https://arxiv.org/abs/2408.01800" target="_blank">MiniCPM-O 2.6</a></td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/minicpm_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2408.01800" target="_blank">MiniCPM-O 2.6</a></td><td>83.36</td><td>83.30</td><td>74.54</td><td>73.74</td><td>54.26</td><td>54.15</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/dpo_logo.avif" alt="" class="method-logo"><a href="https://arxiv.org/abs/2305.18290" target="_blank">+ DPO</a></td><td>82.91</td><td>82.88</td><td>78.86</td><td>75.22</td><td>54.56</td><td>54.52</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/omni_dpo_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.00723" target="_blank">+ OmniDPO</a></td><td>84.96</td><td>84.95</td><td>75.39</td><td>75.04</td><td>56.86</td><td>56.84</td></tr>
+            <tr class="row-indent row-ours"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO</td><td>87.08</td><td>87.02</td><td>79.00</td><td>78.87</td><td>60.57</td><td>60.53</td></tr>
+            <tr class="row-indent row-ours-best"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO++</td><td>87.26</td><td>87.23</td><td>79.49</td><td>79.38</td><td>60.66</td><td>60.64</td></tr>
+          </tbody>
+        </table>  
       </div>
+      <p>
+        MoD-DPO++ achieves gains of up to <b>27% accuracy</b> on the audiovisual matching task relative to the reference models
+        and consistently outperforms all baselines on overall accuracy and F1.
+      </p>
+
+      <h5 class="title is-6"><img src="static/images/model_logos/cmm_logo.png" alt="" class="bench-title-logo">CMM Benchmark Results (Perception Accuracy / Hallucination Resistance)</h5>
+      <div class="table-container">
+        <table class="table is-bordered is-hoverable is-fullwidth results-table">
+          <thead>
+            <tr>
+              <th style="min-width:160px;">Method</th>
+              <th>Overall pa</th>
+              <th>Overall hr</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="3">Other Omni LLMs</td></tr>
+            <tr><td><img src="static/images/model_logos/video_llama_2_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2406.07476" target="_blank">VideoLLaMA 2</a></td><td>71.7</td><td>81.1</td></tr>
+            <tr><td><img src="static/images/model_logos/vita_15_logo.jpg" alt="" class="method-logo"><a href="https://arxiv.org/abs/2501.01957" target="_blank">VITA-1.5</a></td><td>72.2</td><td>57.1</td></tr>
+            <tr><td><img src="static/images/model_logos/omnivinci_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2510.15870" target="_blank">OmniVinci</a></td><td>89.2</td><td>69.4</td></tr>
+            <tr><td><img src="static/images/model_logos/qwen_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.17765" target="_blank">Qwen 3 Omni</a></td><td>95.0</td><td>75.3</td></tr>
+            <tr class="model-header"><td colspan="3"><img src="static/images/model_logos/qwen_logo.png" alt="Qwen" class="model-logo"><a href="https://arxiv.org/abs/2503.20215" target="_blank">Qwen 2.5 Omni</a></td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/qwen_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2503.20215" target="_blank">Qwen 2.5 Omni</a></td><td>86.4</td><td>84.6</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/dpo_logo.avif" alt="" class="method-logo"><a href="https://arxiv.org/abs/2305.18290" target="_blank">+ DPO</a></td><td>85.2</td><td>84.6</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/omni_dpo_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.00723" target="_blank">+ OmniDPO</a></td><td>86.6</td><td>84.7</td></tr>
+            <tr class="row-indent row-ours"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO</td><td>88.8</td><td>86.2</td></tr>
+            <tr class="row-indent row-ours-best"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO++</td><td>89.2</td><td>87.2</td></tr>
+            <tr class="model-header"><td colspan="3"><img src="static/images/model_logos/minicpm_logo.png" alt="MiniCPM" class="model-logo"><a href="https://arxiv.org/abs/2408.01800" target="_blank">MiniCPM-O 2.6</a></td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/minicpm_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2408.01800" target="_blank">MiniCPM-O 2.6</a></td><td>85.6</td><td>80.4</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/dpo_logo.avif" alt="" class="method-logo"><a href="https://arxiv.org/abs/2305.18290" target="_blank">+ DPO</a></td><td>85.2</td><td>80.3</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/omni_dpo_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.00723" target="_blank">+ OmniDPO</a></td><td>86.4</td><td>80.6</td></tr>
+            <tr class="row-indent row-ours"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO</td><td>88.0</td><td>82.5</td></tr>
+            <tr class="row-indent row-ours-best"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO++</td><td>88.3</td><td>83.6</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        On CMM, MoD-DPO++ achieves <b>3&ndash;4% overall gains</b> over the reference models, with the improvement on the
+        <i>language dominance</i> task being notably higher for MoD-DPO++ vs. MoD-DPO, demonstrating the efficacy of language-prior debiasing.
+      </p>
+
+      <h5 class="title is-6">General Benchmarks</h5>
+      <div class="table-container">
+        <table class="table is-bordered is-hoverable is-fullwidth results-table">
+          <thead>
+            <tr>
+              <th style="min-width:160px;">Method</th>
+              <th><img src="static/images/model_logos/daily_omni_logo.webp" alt="" class="bench-logo">DailyOmni (AV)</th>
+              <th><img src="static/images/model_logos/mvbench_logo.png" alt="" class="bench-logo">MVBench (Video)</th>
+              <th><img src="static/images/model_logos/mmau_logo.png" alt="" class="bench-logo">MMAU (Audio)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="model-header"><td colspan="4"><img src="static/images/model_logos/qwen_logo.png" alt="Qwen" class="model-logo"><a href="https://arxiv.org/abs/2503.20215" target="_blank">Qwen 2.5 Omni</a></td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/qwen_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2503.20215" target="_blank">Qwen 2.5 Omni</a></td><td>47.34</td><td>69.61</td><td>64.62</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/dpo_logo.avif" alt="" class="method-logo"><a href="https://arxiv.org/abs/2305.18290" target="_blank">+ DPO</a></td><td>51.44</td><td>68.21</td><td>65.19</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/omni_dpo_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.00723" target="_blank">+ OmniDPO</a></td><td>50.07</td><td>68.89</td><td>65.52</td></tr>
+            <tr class="row-indent row-ours"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO</td><td>53.00</td><td>70.95</td><td>65.77</td></tr>
+            <tr class="row-indent row-ours-best"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO++</td><td>53.82</td><td>71.02</td><td>66.33</td></tr>
+            <tr class="model-header"><td colspan="4"><img src="static/images/model_logos/minicpm_logo.png" alt="MiniCPM" class="model-logo"><a href="https://arxiv.org/abs/2408.01800" target="_blank">MiniCPM-O 2.6</a></td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/minicpm_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2408.01800" target="_blank">MiniCPM-O 2.6</a></td><td>30.55</td><td>62.56</td><td>66.75</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/dpo_logo.avif" alt="" class="method-logo"><a href="https://arxiv.org/abs/2305.18290" target="_blank">+ DPO</a></td><td>34.13</td><td>63.18</td><td>66.91</td></tr>
+            <tr class="row-indent"><td><img src="static/images/model_logos/omni_dpo_logo.png" alt="" class="method-logo"><a href="https://arxiv.org/abs/2509.00723" target="_blank">+ OmniDPO</a></td><td>34.33</td><td>64.42</td><td>67.73</td></tr>
+            <tr class="row-indent row-ours"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO</td><td>35.71</td><td>64.15</td><td>68.98</td></tr>
+            <tr class="row-indent row-ours-best"><td><img src="static/images/mod_dpo_logo.png" alt="" class="method-logo">+ MoD-DPO++</td><td>36.60</td><td>64.32</td><td>68.30</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        While baselines provide inconsistent gains on general benchmarks, MoD-DPO++ provides <b>consistent improvements</b>
+        across all three benchmarks (DailyOmni, MVBench, MMAU), demonstrating that reducing hallucinations
+        also benefits general audiovisual understanding.
+      </p>
     </div>
   </div>
 </section>
@@ -226,8 +331,8 @@
         <h2 class="title is-3">💬 Contact</h2>
         <div class="content">
           <p>For questions about MoD-DPO, please contact:</p>
-          <!-- PLACEHOLDER: Update contact name and email -->
-          <p><b>Contact Name</b> &mdash; <a href="mailto:email@example.com">email@example.com</a></p>
+          <p><b>Ashutosh Chaubey</b> &mdash; <a href="mailto:achaubey@usc.edu">achaubey@usc.edu</a></p>
+          <p><b>Mohammad Soleymani</b> &mdash; <a href="mailto:soleymani@ict.usc.edu">soleymani@ict.usc.edu</a></p>
         </div>
       </div>
     </div>
@@ -238,9 +343,9 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title is-3">📎 BibTeX</h2>
-    <pre><code>@inproceedings{moddpo2026,
+    <pre><code>@inproceedings{chaubey2026moddpo,
   title={MoD-DPO: Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization},
-  author={PLACEHOLDER_AUTHORS},
+  author={Chaubey, Ashutosh and Pang, Jiacheng and Soleymani, Mohammad},
   booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2026}
 }</code></pre>
@@ -252,8 +357,11 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3">🙏 Acknowledgement</h2>
     <p>
-      <!-- PLACEHOLDER: Add funding and acknowledgements. -->
-      [Acknowledgements to be added.]
+      Research was sponsored by the Army Research Office and was accomplished under Cooperative Agreement
+      Number W911NF-25-2-0040. The views and conclusions contained in this document are those of the authors
+      and should not be interpreted as representing the official policies, either expressed or implied, of the
+      Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute
+      reprints for Government purposes notwithstanding any copyright notation herein.
     </p>
   </div>
 </section>
